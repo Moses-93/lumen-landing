@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  --color-abyss: #151c1e;
+  --color-abyss-deep: #0f1416;
+  --color-abyss-card: #1c2427;
+  --color-abyss-hover: #232d31;
+  --color-calm-sky: #6e92b5;
+  --color-calm-sky-dim: rgba(110, 146, 181, 0.2);
+  --color-insight: #fff500;
+  --color-insight-dim: rgba(255, 245, 0, 0.15);
+  --color-sunset: #ff5e00;
+  --color-sunset-dim: rgba(255, 94, 0, 0.15);
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #5e7182;
+  --color-border-subtle: rgba(110, 146, 181, 0.15);
+  --color-border-hover: rgba(255, 245, 0, 0.35);
+
+  --font-display: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, serif;
+}
+
+:root {
+  --background: #151c1e;
+  --foreground: #f1f5f9;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-display, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #fff500;
+  color: #151c1e;
+}
+
+/* Subtle quiet scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #151c1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232d31;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #324046;
+}
+
+/* Atmospheric lighthouse & sunset ambient glows */
+.ambient-lighthouse-glow {
+  background: radial-gradient(circle at 50% 15%, rgba(255, 245, 0, 0.08) 0%, rgba(255, 94, 0, 0.04) 40%, transparent 70%);
+}
+
+.glass-panel {
+  background: rgba(28, 36, 39, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(110, 146, 181, 0.14);
+}
+
+.glass-panel-interactive {
+  background: rgba(28, 36, 39, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(110, 146, 181, 0.14);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-panel-interactive:hover {
+  border-color: rgba(255, 245, 0, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(255, 245, 0, 0.08);
+}
+
+@keyframes calm-breathing {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: scale(1.03);
+  }
+}
+
+.animate-calm-breathing {
+  animation: calm-breathing 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-calm-breathing {
+    animation: none !important;
+  }
+
+  .glass-panel-interactive:hover {
+    transform: none !important;
+  }
+}
